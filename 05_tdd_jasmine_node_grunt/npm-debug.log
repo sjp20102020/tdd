@@ -1,0 +1,79 @@
+0 info it worked if it ends with ok
+1 verbose cli [ '/usr/bin/node',
+1 verbose cli   '/usr/bin/npm',
+1 verbose cli   'install',
+1 verbose cli   'grunt-template-jasmine-instanbul',
+1 verbose cli   '--save-dev' ]
+2 info using npm@1.4.28
+3 info using node@v0.10.40
+4 verbose node symlink /usr/bin/node
+5 warn package.json 05_jasmine_node_grunt@1.0.0 No description
+6 warn package.json 05_jasmine_node_grunt@1.0.0 No repository field.
+7 warn package.json 05_jasmine_node_grunt@1.0.0 No README data
+8 verbose readDependencies using package.json deps
+9 verbose cache add [ 'grunt-template-jasmine-instanbul', null ]
+10 verbose cache add name=undefined spec="grunt-template-jasmine-instanbul" args=["grunt-template-jasmine-instanbul",null]
+11 verbose parsed url { protocol: null,
+11 verbose parsed url   slashes: null,
+11 verbose parsed url   auth: null,
+11 verbose parsed url   host: null,
+11 verbose parsed url   port: null,
+11 verbose parsed url   hostname: null,
+11 verbose parsed url   hash: null,
+11 verbose parsed url   search: null,
+11 verbose parsed url   query: null,
+11 verbose parsed url   pathname: 'grunt-template-jasmine-instanbul',
+11 verbose parsed url   path: 'grunt-template-jasmine-instanbul',
+11 verbose parsed url   href: 'grunt-template-jasmine-instanbul' }
+12 silly lockFile 072a967f-grunt-template-jasmine-instanbul grunt-template-jasmine-instanbul
+13 verbose lock grunt-template-jasmine-instanbul /home/siddy/.npm/072a967f-grunt-template-jasmine-instanbul.lock
+14 silly lockFile 072a967f-grunt-template-jasmine-instanbul grunt-template-jasmine-instanbul
+15 silly lockFile 072a967f-grunt-template-jasmine-instanbul grunt-template-jasmine-instanbul
+16 verbose addNamed [ 'grunt-template-jasmine-instanbul', '' ]
+17 verbose addNamed [ null, '*' ]
+18 silly lockFile 857910e3-grunt-template-jasmine-instanbul grunt-template-jasmine-instanbul@
+19 verbose lock grunt-template-jasmine-instanbul@ /home/siddy/.npm/857910e3-grunt-template-jasmine-instanbul.lock
+20 silly addNameRange { name: 'grunt-template-jasmine-instanbul',
+20 silly addNameRange   range: '*',
+20 silly addNameRange   hasData: false }
+21 verbose request where is /grunt-template-jasmine-instanbul
+22 verbose request registry https://registry.npmjs.org/
+23 verbose request id e8dcfe5af43bf3f3
+24 verbose url raw /grunt-template-jasmine-instanbul
+25 verbose url resolving [ 'https://registry.npmjs.org/',
+25 verbose url resolving   './grunt-template-jasmine-instanbul' ]
+26 verbose url resolved https://registry.npmjs.org/grunt-template-jasmine-instanbul
+27 verbose request where is https://registry.npmjs.org/grunt-template-jasmine-instanbul
+28 info trying registry request attempt 1 at 18:23:58
+29 http GET https://registry.npmjs.org/grunt-template-jasmine-instanbul
+30 http 404 https://registry.npmjs.org/grunt-template-jasmine-instanbul
+31 silly registry.get cb [ 404,
+31 silly registry.get   { 'content-type': 'application/json',
+31 silly registry.get     'cache-control': 'max-age=0',
+31 silly registry.get     'content-length': '2',
+31 silly registry.get     'accept-ranges': 'bytes',
+31 silly registry.get     date: 'Tue, 15 Sep 2015 17:23:59 GMT',
+31 silly registry.get     via: '1.1 varnish',
+31 silly registry.get     age: '0',
+31 silly registry.get     connection: 'keep-alive',
+31 silly registry.get     'x-served-by': 'cache-lcy1124-LCY',
+31 silly registry.get     'x-cache': 'MISS',
+31 silly registry.get     'x-cache-hits': '0',
+31 silly registry.get     'x-timer': 'S1442337839.507005,VS0,VE98' } ]
+32 silly lockFile 857910e3-grunt-template-jasmine-instanbul grunt-template-jasmine-instanbul@
+33 silly lockFile 857910e3-grunt-template-jasmine-instanbul grunt-template-jasmine-instanbul@
+34 error 404 Not Found
+34 error 404
+34 error 404 'grunt-template-jasmine-instanbul' is not in the npm registry.
+34 error 404 You should bug the author to publish it
+34 error 404 It was specified as a dependency of '05_jasmine_node_grunt'
+34 error 404
+34 error 404 Note that you can also install from a
+34 error 404 tarball, folder, or http url, or git url.
+35 error System Linux 3.13.0-62-generic
+36 error command "/usr/bin/node" "/usr/bin/npm" "install" "grunt-template-jasmine-instanbul" "--save-dev"
+37 error cwd /shared/dev/RHELWebStorm/tdd/05_jasmine_node_grunt
+38 error node -v v0.10.40
+39 error npm -v 1.4.28
+40 error code E404
+41 verbose exit [ 1, true ]

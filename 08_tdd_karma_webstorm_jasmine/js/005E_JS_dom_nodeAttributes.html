@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+
+<html>
+<head>
+    <script>
+        /*
+         http://javascript.info/tutorial/attributes-and-custom-properties#properties
+        * Summary
+
+         Both attributes and properties are core features in the DOM model.
+
+         The table of differences and relations:
+         Properties 	Attributes
+         Any value 	String
+         Names are case-sensitive 	not case-sensitive
+         Don’t show up in innerHTML 	Visible in innerHTML
+         Standard DOM properties and attributes are synchronized, custom are not.
+         Attributes are mixed with properties and screwed up in IE<8, IE8 compat. mode.
+
+         If you want to have custom attributes in HTML, remember that data-* attributes are valid in HTML5. See Custom data attributes section of HTML5 standard.
+
+         In real life, in 98% of cases DOM properties are used.
+
+         You should use attributes in only two cases:
+
+         A custom HTML attribute, because it is not synced to DOM property.
+         To access a built-in HTML attribute, which is not synced from the property, and you are sure you need the attribute.
+         For example, value in INPUT.
+
+         */
+
+        var isLoaded = function () {
+            if (document.addEventListener) {
+                document.addEventListener('DOMContentLoaded', ready);
+            }
+        };
+
+        var list = [];
+        var ready = function () {
+//            for(var key in document.body){
+            console.log(document.getElementById('div1'));
+            for (var key in document.getElementsByTagName('div')[0]) {
+                list.push(key + ";" + document.getElementsByTagName('div')[0][key]);
+
+            }
+            console.log(list.join('\n'));
+//            console.log(list);
+
+            readAttributes();
+            setAttributes();
+        };
+
+        var readAttributes = function () {
+            console.log(document.getElementById("div1").hasAttribute('style'));
+            console.log(document.getElementById("div1").getAttribute('style'));
+            document.getElementById("div1").setAttribute('style', 'color:blue');
+
+            console.log(document.getElementById("div1").innerHTML);
+
+        }
+
+        var setAttributes = function () {
+//            var input = document.body.children[0]   //works fine
+//            var input = document.getElementById('tid1');  //works fine
+            var input = document.getElementsByName('mytext1')[0];  //works fine
+            console.log(input);
+            input.setAttribute('value', 'new');
+            alert(input.value) // 'new', input.value changed
+        };
+
+        isLoaded();
+
+
+    </script>
+
+</head>
+<body>
+<input type="text" value="markup" id="tid1" name="mytext1">
+
+<div>hii sid</div>
+<input type="text" name="t1" value="v2"/>
+<span id="span1">in span1</span>
+
+<div id="div1" style="color:red" sidyProp="hii">in div1</div>
+</body>
+</html>

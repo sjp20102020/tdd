@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <script>
+
+        /*
+         http://javascript.info/tutorial/more-references-forms-and-tables
+         * Summary
+
+         TABLE
+         Direct access to rows and cells.
+         FORM
+         Forms are in document.forms[name/index]. Elements are in form.elements[name/index].
+         SELECT
+         Direct access to options by select.options[name/index]. The index of the selected option: select.selectedIndex.
+
+         These methods are very convenient compared to general DOM searching machinery.
+
+         */
+
+        var isLoaded = function () {
+            if (document.addEventListener) {
+                document.addEventListener('DOMContentLoaded', ready);
+            }
+        };
+
+
+        var ready = function () {
+            getformElements();
+        };
+
+        var getformElements = function () {
+            //text box
+            console.log(document.forms['f1'].elements['t1'].value);//method1
+            console.log(document.forms[0].elements[0].value);//method12
+            console.log(document.forms.f1.elements.t1.value);//method3
+
+            //select 
+            console.log(document.forms['f1'].elements['s1'].options[0].value);
+            console.log(document.forms['f1'].elements['s1'].options[document.forms['f1'].elements['s1'].selectedIndex].value);
+
+
+        }
+
+        isLoaded();
+
+        /*
+        *
+        *
+         http://robertnyman.com/2011/08/16/html5-forms-input-types-attributes-and-new-elements-demos-tips-and-tricks/
+
+        * */
+
+    </script>
+
+</head>
+<body>
+<form name="f1">
+    <input type="text" name="t1" value="v1">
+    <input type="text" name="t2" value="v2">
+
+    <select name="s1">
+        <option name="s1o1" value="blues">Soft blues</option>
+        <option name="s1o2" value="bock">Hard rock</option>
+    </select>
+
+    <br/><br/>
+    <!--html5 elements-->
+
+    date<input type="date" value="2011-06-08"><br/>
+    datetime <input type="datetime" value="2011-06-09T20:35:34.32"><br/>
+    datetime-local <input type="datetime-local" value="2011-06-09T22:41"><br/>
+    month<input type="month" value="2011-06"><br/>
+    <!-- Note: Most web browsers seem to let through any value at this time. -->
+    time <input type="time" value="22:38"><br/>
+
+    <br/>
+    email<input type="email" value="robert@robertnyman.com"><br/>
+    <!-- Note: In WebKit-based web browsers (Google Chrome, Safari) you can add
+    the non-standard results attribute to get a looking glass icon to click to see the latest searches,
+     and the attribute autosave to keep them across page loads. -->
+    tel  <input type="tel" value="[Any numeric value]"><br/>
+
+    <br/>
+    number<input type="number" value="4"><br/>
+    range<input type="range" value="15"><br/>
+    <!-- Note: If not set, default attribute values are min="0", max="100", step="1". -->
+    search<input type="search" value="[Any search text]"><br/>
+
+
+    url<input type="url" value="http://robertnyman.com"><br/>
+    <!-- Note: requires a protocol like http://, ftp:// etc in the beginning. -->
+    week<input type="week" value="2011-W24"><br/>
+    color<input type="color" value="#b97a57">    <br/>
+
+    list <input type="text" name="characters" list="data-list">
+    <datalist id="data-list">
+        <option value="Hugo Reyes">
+        <option value="Jack Shephard">
+        <option value="James 'Sawyer' Ford">
+        <option value="John Locke">
+        <option value="Sayid Jarrah">
+    </datalist>
+
+
+    <br/><br/><br/><br/>
+   autocomplete <input type="text" autocomplete="off"><br/>
+    autofocus<input type="text" autofocus><br/>
+    formaction<input type="submit" formaction="http://example.org/save" value="Save"><br/>
+    formenctype<input type="submit" formenctype="application/x-www-form-urlencoded" value="Save with enctype"><br/>
+    formmethod<input type="submit" formmethod="POST" value="Send as POST"><br/>
+    formnovalidate<input type="submit" formnovalidate value="Don't validate"><br/>
+    formtarget<input type="submit" formtarget="_blank" value="Post to new tab/window"><br/>
+    <!-- Note: See a complete example in the New elements section below. -->
+    max<input type="range" max="95"><br/>
+    min<input type="range" min="2"><br/>
+    multiple<input type="file" multiple><br/>
+   novalidate <form action="http://example.org" method="GET" novalidate><br/>
+      pattern - [A-Z]* <input type="text" pattern="[A-Z]*"><br/>
+        <!-- Note: It is case sensitive, so you need to supply both lower- and upper-case letters if you want to allow that. -->
+      placeholder  <input type="placeholder" name="first-name" placeholder="E.g. John Locke"><br/>
+      readonly  <input type="text" readonly><br/>
+      required  <input type="text" required><br/>
+        <!-- Note: Some web browsers have to have a name attribute for this to work (this could also apply to other HTML5 Forms features, so pro tip is to always have a name attribute for form elements). -->
+      spellcheck  <input type="text" spellcheck="true"><br/>
+        <!-- Note: Has to be set to true or false, just an attribute present doesn't work -->
+      step  <input type="number" step="3"><br/>
+
+
+</form>
+</body>
+</html>

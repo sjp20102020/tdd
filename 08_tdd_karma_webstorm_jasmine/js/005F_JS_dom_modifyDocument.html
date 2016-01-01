@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+
+<html>
+<head>
+    <script>
+
+        /*
+         http://javascript.info/tutorial/modifying-document
+        * Summary
+        * =======
+         Creation methods:
+
+         document.createElement(tag) - creates a new element node.
+         document.createTextNode(value) - creates a new text node with given value
+         elem.cloneNode(deep) - clones the element
+
+         Inserting and removing methods are called from parent node. All of them return elem:
+
+         parent.appendChild(elem)
+         parent.insertBefore(elem, nextSibling)
+         parent.removeChild(elem)
+         parent.replaceChild(elem, currentElem)
+
+         */
+
+        var isLoaded = function () {
+            if (document.addEventListener) {
+                document.addEventListener('DOMContentLoaded', ready);
+            }
+        };
+
+        var createNodes = function () {
+            var div2 = document.createElement('div');
+            div2.innerHTML = "div1 is just created";
+              document.body.appendChild(div2);  //appends  div2  to body
+//            document.getElementById('divId1').appendChild(div2);  //appends div2 to divId1
+
+            var text1 = document.createTextNode("I am a text node");
+            document.body.insertBefore(text1, div2);
+
+            text1.textContent= "text node update2";
+
+
+
+        };
+
+        var ready = function () {
+            createNodes();
+        };
+
+
+        isLoaded();
+
+
+    </script>
+
+</head>
+<body>
+
+<div id="divId1">hii sid 2</div>
+</body>
+</html>

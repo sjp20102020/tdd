@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html>
+<body>
+<form name="f1">
+    hiii
+    <p id="id1"> click on me...</p>
+
+    <p id="id1a">initial</p>
+
+    <p id="demo"></p>
+
+    <script>
+
+        /*
+        addEventListener vs AttachEvent
+
+        addEventListener:  specify name of the event and not the event handler name
+        attachEvent : specify the event handler name.
+
+         window.addEventListener('load', doWindowLoadVoodoo, false);
+         window.attachEvent('onload', doWindowLoadVoodoo);
+
+         document.getElementByTagName('button').addEventListener('click', callClick)
+         document.getElementByTagName('button').attachEvent('onclick', callClick)
+
+
+
+        *
+        * */
+
+
+        /*
+         DOM load checker....use 'DOMContentLoaded'
+         * */
+        var isLoaded = function () {
+            if (document.addEventListener) {
+                document.addEventListener('DOMContentLoaded', ready);
+            }
+        };
+
+        var ready = function () {
+            console.log("in ready");
+            document.addEventListener("click", function () {
+                document.getElementById("demo").innerHTML = "Hello World!";
+            });
+
+            //document.getElementById("id1").addEventListener("click",
+            document.getElementsByTagName('input')[0].addEventListener("focus",
+                    function () {
+                        alert('hi');
+                    }
+            );
+
+        }
+
+        /*
+         document.addEventListner('click', function(){}) or
+         document.getElementById('id1').addEventListener('click', function(){})
+
+         http://www.w3schools.com/jsref/dom_obj_event.asp
+
+         events : click, dblclick, mouseover, mouseout, keydown, keypress,
+
+
+         *
+         *
+         */
+
+
+        isLoaded();
+    </script>
+    <input type="text" name="t1" value="v1"/>
+    <input type="text" name="t2" value="v2"/>
+    <input type="text" name="t3" value="v3"/>
+
+</form>
+</body>
+</html>

@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <style>
+        .roundc{
+            border:2px solid #ff0000;
+            border-radius:25px;
+            background:#dddddd;
+            width:500px;
+            height: 200px;
+           /* -moz-border-radius:25px; /!* Firefox *!/
+            -webkit-border-radius:25px; /!* Chrome and Safari *!/
+            -o-border-radius:25px; /!* Opera *!/*/
+        }
+
+        .roundpcds
+        {
+            border: 10px solid transparent;
+            padding: 15px;
+            border-image:url(../images/img1.png) 30 30 round;
+            -moz-border-image:url(../images/img1.png) 30 30 round; /* Firefox */
+            -webkit-border-image:url(../images/img1.png) 30 30 round; /* Safari and Chrome */
+            -o-border-image:url(../images/img1.png) 30 30 round; /* Opera */
+        }
+        .roundpcds2
+        {
+            border: 10px solid transparent;
+            padding: 15px;
+            border-image:url(../images/border.png) 30 30 round;
+            -moz-border-image:url(../images/border.png) 30 30 round; /* Firefox */
+            -webkit-border-image:url(../images/border.png) 30 30 round; /* Safari and Chrome */
+            -o-border-image:url(../images/border.png) 30 30 round; /* Opera */
+        }
+        .stretchPcds
+        {
+            -moz-border-image:url(../images/large.png) 30 30 stretch; /* Firefox */
+            -webkit-border-image:url(../images/large.png) 30 30 stretch; /* Safari and Chrome */
+            -o-border-image:url(../images/large.png) 30 30 stretch; /* Opera */
+            border-image:url(../images/large.png) 30 30 stretch;
+        }
+
+        .boxshadow {
+            width: 300px;
+            height: 100px;
+            background-color: yellow;
+            box-shadow: 10px 10px 5px #888888;
+        }
+
+
+
+        /* The animation code */
+        @keyframes example {
+            from {background-color: red;}
+            to {background-color: yellow;}
+        }
+
+        /* The element to apply the animation to */
+        .animationclass {
+            width: 100px;
+            height: 100px;
+            background-color: red;
+            animation-name: example;
+            animation-duration: 4s;
+        }
+
+
+    </style>
+
+</head>
+<body >
+<div  style="border:medium dashed red" >siddy joy peter simpson</div>
+<div style="padding: 115px 15px 200px 250px">siddy joy peter simpson</div>
+hiii
+
+
+<span style="display:inline; border:medium solid red ">in display inline</span>
+hii
+<span style="display:block; border:medium dotted blue ">in display block</span>
+
+<header>I am in the header</header>
+
+<div class="roundc">i am in the the
+sfsr sfsf sfsfsw
+    sfsf
+    sf sfs  sfhs si fsuifshi
+    skfh aifgsdkh iushf
+    stgh
+    ts
+    gshf
+</div>
+
+<div class="roundpcds">
+    I reckon we got to type something
+    if not
+    sfsfh sfhsf sf
+    sfhsfhs sflhsf
+
+</div>
+<div class="stretchPcds">
+    sfh sfh sfht whsk
+    sfhsfk aghe gbastgeh
+    sfkhskfh tgwerhtwlsh sglslghs
+    sfhkf atgwehjag sgshag; gahstgah
+    sfkashfa; gahg; sghag;a
+</div>
+<br/><br/>
+<div class="roundpcds2">
+    I reckon we got to type something
+    if not
+    sfsfh sfhsf sf
+    sfhsfhs sflhsf
+
+</div>
+
+<div class="boxshadow">hii in the box shaddow</div>
+
+
+<div class="animationclass">I am animated</div>
+
+to rotate text
+<img src="../images/textRotate.png" /><br/><br/>
+
+to put a background <color></color>
+<img src="../images/background.png" />
+</body>
+</html>

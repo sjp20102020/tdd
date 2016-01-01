@@ -1,0 +1,184 @@
+<!DOCTYPE html>
+
+<html>
+<head>
+    <script>
+        /*
+         ///http://javascript.info/tutorial/binding
+         Summary
+
+         There are 3 binding methods:
+
+         Save this in a local variable (var self = this) and use it inside nested functions.
+         Bind a function to proper this with bind - especially convenient when it’s in Function.prototype.
+         Use late binding for a method call if the method may change or doesn’t exist at the time of binding.
+
+
+         All methods have their pros and contras. Together they are indeed useful. Happy binding Smile
+
+
+         Early binding
+         ============
+
+         We could use a helper function bind which forces this.
+
+         function bind(func, fixThis) {
+         return function() {
+         return func.apply(fixThis, arguments)
+         }
+         }
+
+         function Menu(elem) {
+         elem.onclick = bind(function() {
+         alert(this)  // object! (menu)
+         }, this)
+         }
+
+
+
+         Function.prototype.bind
+         =========================
+         There is a native Function.prototype.bind method which does exactly the same,
+         plus it allows to fix arguments.
+
+         It is supported by most modern browsers. For those which don’t support, we can emulate it:
+
+
+         Function.prototype.bind = Function.prototype.bind || function(fixThis) {
+         var func = this
+         return function() {
+         return func.apply(fixThis, arguments)
+         }
+         }
+
+
+         function Menu(elem) {
+         setTimeout(function() {
+         alert(this)  // object! (menu)
+         }.bind(this), 1000)
+         }
+
+
+
+         function Menu(elem) {
+         elem.onclick = function() {
+         alert(this)  // object! (menu)
+         }.bind(this)
+         }
+
+         new Menu(document.createElement('div'))
+
+
+         */
+
+        var isLoaded = function () {
+            if (document.addEventListener) {
+                document.addEventListener('DOMContentLoaded', ready);
+            }
+        };
+
+
+        var ready = function () {
+            callingFn();
+            callingFn2();
+        };
+
+
+        /*
+         this  : context is lost...
+         directly inside the Menu, this becomes --> Menu{} which is correct
+         in the setTimout this becomes -> window
+         in elem.onclick this becomes --> elem
+         **/
+        var Menu = function (elem) {
+            console.log("in Menu.....");
+            console.log(arguments);
+//            console.log(elem);
+            console.log(this);
+            setTimeout(function () {
+                console.log("in setTimout");
+                console.log(this);
+            }, 1000);
+
+
+            elem.onclick = function () {
+                console.log("in elem onclick");
+                console.log(this);
+            }
+
+        };
+
+
+        var Menu2 = function (elem) {
+            console.log("in Menu2.....");
+            console.log(arguments);
+//            console.log(elem);
+            var self = this;
+            console.log(this);
+            setTimeout(function () {
+                console.log("in setTimout");
+                console.log(self);
+            }, 1000);
+
+
+            elem.onclick = function () {
+                console.log("in elem onclick");
+                console.log(self);
+            }
+
+        };
+
+
+        var callingFn = function () {
+            var elem1 = document.createElement('div');
+            elem1.innerHTML = "in the div i created";
+            document.body.appendChild(elem1);
+
+            var menu = new Menu(elem1);
+        }
+
+        var callingFn2 = function () {
+            var elem2 = document.createElement('div');
+            elem2.innerHTML = "in the div 2 created";
+            document.body.appendChild(elem2);
+
+            var menu = new Menu2(elem2);
+        }
+
+
+        console.log("==============good summary about variables=======START==========");
+        var x = "Global scope";
+        var y = "Not changed.";
+
+        function Foo() {
+            this.x = "Attribute of foo";
+            var x = "In foo's closure";
+            y = "Changed!"
+            this.getX = function () {
+                return x;//this will return the closure
+                //return this.x;    // will return the attribute of foo
+            }
+        }
+
+
+        console.log(x); // "Global scope"
+        console.log(y); // "Not changed"
+        foo = new Foo();
+        console.log(y); // "Changed!"
+        console.log(foo.x); // "Attribute of foo"
+        console.log(x); // "Global scope"
+        console.log(foo.getX()); // "In foo's closure"
+
+        console.log("==============good summary about variables=======END==========");
+
+        isLoaded();
+
+
+    </script>
+
+</head>
+<body>
+<input type="button" id="bid1" value="click me"/>
+</form>
+</body>
+</html>

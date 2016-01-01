@@ -1,0 +1,61 @@
+0 info it worked if it ends with ok
+1 verbose cli [ '/usr/bin/node', '/usr/bin/npm', 'install', '-' ]
+2 info using npm@1.4.28
+3 info using node@v0.10.40
+4 verbose node symlink /usr/bin/node
+5 verbose cache add [ '-', null ]
+6 verbose cache add name=undefined spec="-" args=["-",null]
+7 verbose parsed url { protocol: null,
+7 verbose parsed url   slashes: null,
+7 verbose parsed url   auth: null,
+7 verbose parsed url   host: null,
+7 verbose parsed url   port: null,
+7 verbose parsed url   hostname: null,
+7 verbose parsed url   hash: null,
+7 verbose parsed url   search: null,
+7 verbose parsed url   query: null,
+7 verbose parsed url   pathname: '-',
+7 verbose parsed url   path: '-',
+7 verbose parsed url   href: '-' }
+8 silly lockFile 3bc15c8a- -
+9 verbose lock - /home/siddy/.npm/3bc15c8a-.lock
+10 silly lockFile 3bc15c8a- -
+11 silly lockFile 3bc15c8a- -
+12 verbose addNamed [ '-', '' ]
+13 verbose addNamed [ null, '*' ]
+14 silly lockFile c75fe0d4- -@
+15 verbose lock -@ /home/siddy/.npm/c75fe0d4-.lock
+16 silly addNameRange { name: '-', range: '*', hasData: false }
+17 verbose request where is /-
+18 verbose request registry https://registry.npmjs.org/
+19 verbose request id 30e452f1f6b9d1e9
+20 verbose url raw /-
+21 verbose url resolving [ 'https://registry.npmjs.org/', './-' ]
+22 verbose url resolved https://registry.npmjs.org/-
+23 verbose request where is https://registry.npmjs.org/-
+24 info trying registry request attempt 1 at 17:24:13
+25 http GET https://registry.npmjs.org/-
+26 http 404 https://registry.npmjs.org/-
+27 silly registry.get cb [ 404,
+27 silly registry.get   { 'content-type': 'application/json',
+27 silly registry.get     'cache-control': 'max-age=0',
+27 silly registry.get     'content-length': '57',
+27 silly registry.get     'accept-ranges': 'bytes',
+27 silly registry.get     date: 'Mon, 14 Sep 2015 16:24:13 GMT',
+27 silly registry.get     via: '1.1 varnish',
+27 silly registry.get     age: '0',
+27 silly registry.get     connection: 'keep-alive',
+27 silly registry.get     'x-served-by': 'cache-lcy1135-LCY',
+27 silly registry.get     'x-cache': 'MISS',
+27 silly registry.get     'x-cache-hits': '0',
+27 silly registry.get     'x-timer': 'S1442247853.338453,VS0,VE85' } ]
+28 silly lockFile c75fe0d4- -@
+29 silly lockFile c75fe0d4- -@
+30 error 404 Not Found
+31 error System Linux 3.13.0-62-generic
+32 error command "/usr/bin/node" "/usr/bin/npm" "install" "-"
+33 error cwd /shared/dev/RHELWebStorm/tdd/03_tdd_javascript
+34 error node -v v0.10.40
+35 error npm -v 1.4.28
+36 error code E404
+37 verbose exit [ 1, true ]

@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+
+<html>
+<head>
+    <script>
+        /*
+         Summary
+
+         nodeType
+         =======
+         Type of the node. Most notable types are 1 for elements and 3 for text nodes. Read-only.
+
+         nodeName/tagName
+         ================
+         Tag name in upper case. The nodeName also has special values for non-element nodes. Read-only.
+
+         innerHTML
+         ========
+         Content of an element node. Writeable.
+
+         nodeValue
+         ==========
+         Content of a text node. Writeable.
+
+
+         DOM Nodes also have other properties, depending on the tag.
+         For example, an INPUT element has value and checked properties, A has href etc.
+
+        * */
+        var isLoaded = function () {
+            if (document.addEventListener) {
+                console.log("In eventlist");
+                document.addEventListener('DOMContentLoaded', ready);
+            }
+        };
+
+        var ready = function () {
+            console.log("loaded");
+            for (i in document.body.children) {
+                if (document.body.childNodes[i]) {
+                    console.log(document.body.childNodes[i].nodeType);
+
+                    if(document.body.childNodes[i]===3)   {
+                        console.log(document.body.childNode[i]);
+                        document.body.childNodes[i].nodeValue = "I am changing..";
+                    }
+                }
+            }
+
+            console.log("firstnode==" + document.body.firstChild.textContent + "==" + document.body.firstChild.nodeType);
+            console.log("lastnode==" + document.body.lastChild.innerHTML + "==" + document.body.lastChild.nodeType);
+
+            console.log(document.body.childNodes[1].nodeType);
+            document.body.childNodes[1].nodeValue="joy peter";
+
+            for (i in document.body.children) {
+                if (document.body.childNodes[i])
+                    console.log(document.body.childNodes[i].nodeType);
+            }
+
+        };
+
+        isLoaded();
+
+        /*
+         https://developer.mozilla.org/en-US/docs/Web/API/EventTarget
+         https://developer.mozilla.org/en-US/docs/Web/API/Node
+         https://developer.mozilla.org/en-US/docs/Web/API/Document
+         https://developer.mozilla.org/en-US/docs/Web/API/Element
+         https://developer.mozilla.org/en-US/docs/Web/API/HTMLElement
+
+
+         * */
+
+    </script>
+
+</head>
+<body>
+<div>hii sid</div>
+<input type="text" name="t2" value="v2"/>
+<span id="span1">in span1</span>
+
+<div id="div1">in div1</div>
+</body>
+</html>

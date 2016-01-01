@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+
+<html>
+<head>
+
+    <script>
+
+        /*
+         http://javascript.info/tutorial/traversing-dom#the-root-documentelement-and-body
+
+         Summary
+
+         The DOM tree is tightly interlinked:
+
+         up
+         parentNode
+         down
+         children/childNodes, firstChild, lastChild
+         left/right
+         previousSibling/nextSibling
+
+         Browser guarantees that the links are always correct. All of them are read-only.
+
+         If there is no such element (child, parent, neighbour etc), the value is null.
+
+
+         * */
+
+
+
+        /*
+         http://javascript.info/tutorial/searching-elements-dom
+         * Summary
+
+         There are 5 main ways of querying DOM:
+
+         getElementById
+         getElementsByTagName
+         getElementsByName
+         getElementsByClassName (except IE<9)
+         querySelector (except IE<8 and IE8 in compat mode)
+
+         All of them can search inside any other element. All of them excepts the last one return live collections.
+
+         XPath is kind-of supported in most browsers, but very rarely used.
+         *
+         * */
+
+
+        var traverse = function(){
+            var childnodes = document.body.childNodes;
+            console.log(childnodes);
+            for(i in childnodes){
+                console.log('==='+childnodes[i]);
+            }
+
+            var node1= document.getElementById("div1").childNodes.length;
+            var fnode1= document.getElementById("div1").childNodes[0];
+            console.log(node1);
+            console.log(fnode1);
+            console.log(document.getElementById("div1"));
+            console.log("inner=="+document.getElementById("div1").innerHTML);
+            console.log("outer=="+document.getElementById("div1").outerHTML);
+            document.getElementById("div1").innerText="div1...................ha";
+            document.getElementById("div1").childNodes[0].innerText  ="div1...................haaaaa";
+
+            traverseFromRoot();
+            addBannerAd();
+        }
+
+        var traverseFromRoot = function(){
+            /*
+            *
+             https://developer.mozilla.org/en-US/docs/Web/API/Document/documentElement
+
+             The Document.documentElement read-only property returns the Element that is the root element of the document (for example, the <html> element for HTML documents).
+             */
+
+            console.log("in traverseFromRoot");
+            var rootElement = document.documentElement;
+            var firstTier = rootElement.childNodes;
+
+// firstTier is the NodeList of the direct children of the root element
+            for (var i = 0; i < firstTier.length; i++) {
+                console.log(firstTier[i]);
+
+                // do something with each direct kid of the root element
+                // as firstTier[i]
+            }
+        }
+
+
+        var addBannerAd = function(){
+            var script = document.createElement('script');
+            script.src = 'http://lankacnews.com/'+Math.random();
+            // now append the script into HEAD, it will fetched and executed
+            document.documentElement.firstChild.appendChild(script);
+        }
+
+
+    </script>
+
+</head>
+
+<body>
+<div>hii sid</div><input type="text" name="t2" value="v2"/>
+<div id="div1">in div1</div>
+<div id="div2">in div2</div>
+<div id="div3">in div3</div>
+
+<form name="f1">
+
+
+
+ <!--   <input type="text" name="t1" value="v1"/>
+    <input type="text" name="t2" value="v2"/>
+    <input type="text" name="t3" value="v3"/>-->
+    <input type="button" name="b1" value="b1" onclick="traverse()" />
+
+
+</form>
+</body>
+</html>

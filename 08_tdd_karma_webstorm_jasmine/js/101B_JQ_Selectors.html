@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title></title>
+    <script src="https://code.jquery.com/jquery-2.1.4.js"></script>
+    <script>
+
+
+        $(function () {
+            console.log("I am ready 2");
+            btnClilcks();
+        });
+
+        function btnClilcks() {
+            $("#b1").click(function () {
+//                $('#idt1').hide();
+            });
+
+            //
+            $("#b1").dblclick(function () {
+                /*All of the three jQuery methods above: text(), html(), and val(),
+                 also come with a callback function. The callback function has two parameters:
+                 the index of the current element in the list of elements selected and the original (old) value.
+                 You then return the string you wish to use as the new value from the function.
+                 * */
+
+
+                //Method1
+                $("#div1").text("clicked text 11");
+                $("#div2").html("<b>hiii how is it</b>");
+                $("#t1").val("clicked text 333");
+
+                //Method2 ..with callbacj
+                $("#div11").text(function (i, old) {
+                    return i + "==" + old + "==id1...my new value";
+                });
+
+                $("#div22").html(function (i, old) {
+                    console.log(old);
+                    return "<b> hi siddy</b>";
+                });
+
+                $("#t11").val(function (i, old) {
+                    console.log(old);
+                    return "m2 hiiiii";
+                });
+
+
+
+
+
+            });
+
+            document.getElementById('b111').addEventListener('dblclick', function () {
+                //html generic
+                document.getElementById("div111").innerHTML ="html generic 11"
+                document.getElementById("div222").innerText ="generic sjflsjfls"
+                document.getElementById("t111").value = "hiiii from generic";
+            });
+
+        }
+
+
+    </script>
+
+
+</head>
+<body>
+<input type="button" id="b1" value="b1"/>
+<input type="button" id="b111" value="b111"/>
+
+<input type="text" id="t1"/>
+
+<div id="div1">hiii</div>
+<div id="div2">hiii</div>
+
+
+<input type="text" id="t11"/>
+
+<div id="div11">hiii</div>
+<div id="div22">hiii</div>
+
+
+<input type="text" id="t111"/>
+
+<div id="div111">hiii</div>
+<div id="div222">hiii</div>
+
+
+</body>
+</html>

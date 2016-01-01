@@ -1,0 +1,382 @@
+<!DOCTYPE html>
+
+<html>
+<head>
+    <script>
+
+        /*
+         http://javascript.info/tutorial/initialization
+
+         * If a variable is not declared with var, then, of course, it doesn’t get created at initialization stage.
+         * The interpreter won’t see it:
+         *
+         *
+         * The first is a VariableEnvironment object, which is actually populated by variables and functions,
+         * declared by FunctionDeclaration, and then becomes immutable.
+
+         The second is a LexicalEnvironment object, which is almost same as VariableEnvironment,
+         but it is actually used during the execution.
+
+
+         * */
+
+        console.log("=1=========Initialization of functions and variables====================");
+
+        console.log(myName);//undefined
+        console.log("myName" in window);//true . myName is defined using var
+        //        console.log(myName2);  //error
+        console.log("myName2" in window);  //false. myName2 do not have var.
+
+        console.log(ff);
+        var myName = "sid";
+
+
+        var isLoaded = function () {
+            if (document.addEventListener) {
+                document.addEventListener('DOMContentLoaded', ready);
+            }
+        };
+        var ready = function () {
+        };
+
+        /*
+         * below functions and variables are global. get assigned to window object
+         *
+         *
+
+         FunctionDeclarations become ready-to-use functions. That allows to call a function before it’s declaration.
+         Variables start as undefined.
+         All assignments happen later, when the execution reaches them.
+
+
+
+         * */
+
+        window.f = function () {
+        };
+        f2 = function () {
+        };
+        var f3 = function () {
+        };
+
+        function ff() {
+        }
+
+        window.myName = "sid";
+        myName2 = "sid2";
+        var myName3 = "sid3";
+
+
+        console.log("==2===========with operator====================");
+        /*
+         *
+         The with(obj) { ... } operator treats obj as an extra scope. All variables inside the block are first searched in the properties of obj, and then in the outside scope.
+         The with operator is deprecated and not recommended for a number of reasons. Try to evade it.
+         JavaScript compressors are buggy when you use with.
+
+         */
+
+
+        var x5 = 10;
+        var y5 = 20;
+        var emp5 = {name: "sid", add: "lon"};
+        with (emp5) {
+            console.log(name);
+            console.log(x5);
+        }
+
+        console.log("====3=============closures=======================");
+
+        console.log("=====Nested functions====1===============");
+        // LexicalEnvironment = window = {a6:1, f6: function}
+        var a6 = 20;
+        function f6() {
+            // LexicalEnvironment = {g6:function}
+            function g6() {
+                // LexicalEnvironment = {}
+                console.log(a6);
+            }
+
+            return g6;
+        }
+
+        var callf6 = f6();
+        callf6();
+
+        console.log("=====Nested functions====2===============");
+        var a7 = 30;
+        var f7 = function () {
+            g7 = function () {
+                console.log(a7);
+            }
+            return g7;
+        }
+
+        //Method1 to call g7
+        var callf7 = f7();
+        callf7();
+
+        //method2 to call g7.
+        console.log(f7()); //f7() will just return the g7 function.
+        f7()(); //the first f7() will get the g7. and the second () will run g7.
+
+
+        console.log("===========nested function ====3============");
+        function sum8(a) {
+            return function (b) { // takes a from outer LexicalEnvironment
+                return a + b
+            }
+        }
+        ;
+
+        console.log(sum8(10)(5));//two ()() because , first () will return the function, and 2nd () will execute the function
+
+        console.log("=============closures=====4====================");
+        /*
+         *
+
+         The inner function keeps a reference to the outer LexicalEnvironment.
+         The inner function may access variables from it any time even if the outer function is finished.
+         The browser keeps the LexicalEnvironment and all it’s properties(variables)
+         in memory until there is an inner function which references it.
+
+         This is called a closure.
+
+         */
+        function User9(name) {
+            this.say = function (phrase) { //this is a must. if not cannot call user9.say("hiiii")
+                console.log(name + ' says: ' + phrase)
+            }
+        }
+        var user9 = new User9('John');
+        user9.say("hiiii");//this is a must. if not cannot call user9.say("hiiii")
+
+
+        console.log("===============Mutability/changability of LexicalEnvironment=======5=============");
+        /*
+
+         Variables in outer LexicalEnvironment may change.
+
+         Inner functions always see the last value.
+
+         */
+        var User10 = function (name) {
+
+            this.fixName = function () {
+                name = name.toUpperCase()
+            }
+            this.say = function (phrase) {
+                console.log(name + ' says: ' + phrase)
+            }
+        }
+        var user10 = new User10('John')
+        user10.fixName()
+        user10.say("I'm alive!") // Mr.JOHN says: I'm alive!
+
+        console.log("===========loop issue====problem=============6=====================");
+
+        function makeArmy() {
+            var shooters = []
+            for (var i = 0; i < 10; i++) {
+                var shooter = function () { // a shooter is a function
+                    console.log(i) // which should alert it's number
+                }
+                shooters.push(shooter)
+            }
+            return shooters
+        }
+        var army = makeArmy()
+        var shooter = army[0] // first shooter
+        shooter() // alerts 10, should be 0
+        shooter = army[5] // 5th shooter
+        shooter() // alerts 10, should be 5
+
+
+        console.log("===========loop issue====solution1=============6=====================");
+        function makeArmy11() {
+            console.log(arguments);
+            var shooters = []
+            for (var i = 0; i < 10; i++) {
+                var shooter = function () {
+                    console.log(arguments);
+                    console.log(arguments.callee.i)
+                }
+                shooter.i = i
+                shooters.push(shooter)
+            }
+            return shooters
+        }
+        var army = makeArmy11()
+        army[0]() // 0
+        army[1]() // 1
+        //                    console.log(callee.i )  //this returns and reference error.
+
+        console.log("===========loop issue====solution1=============6=====================");
+
+        /*
+         Here, the actual shooting function is created as the result of an anonymous function(i)
+         which is created and executed in one place.
+
+         So, when it comes to executing alert(i), it will be taken from LexicalEnvironment of the anonymous function.
+
+         So, the anonymous function traps current i into it’s LexicalEnvironment
+         and allows the shooter to access it.
+         * */
+
+        function makeArmy12() {
+            var shooters = []
+            for (var i = 0; i < 10; i++) {
+                var shooter = function (i) {
+                    return function () {
+                        console.log(i);
+                    }
+                }
+                shooters.push(shooter)
+            }
+            return shooters
+        }
+        var army = makeArmy12()
+        army[0]() // 0
+        army[1]() // 1
+
+
+        console.log("===========loop issue====solution3=============6=====================");
+
+        /*The last way is to wrap the whole loop into temporary function. Sometimes that’s more readable:
+         The (function(i) { ... }) definition is wrapped into brackets to make sure the interpreter treats that as expression.
+
+         * */
+
+        function makeArmy13() {
+            var shooters = []
+            for (var i = 0; i < 10; i++) (function (i) {
+                var shooter = function () {
+                    console.log(i)
+                }
+                shooters.push(shooter)
+            })(i)
+            return shooters
+        }
+        var army = makeArmy13()
+        army[0]() // 0
+        army[1]() // 1
+
+
+        console.log("==================[[Scope]] for new Function======================");
+        console.log("==========scope is in take withouth new=============");
+        window.a14 = 10;
+        var myFn14 = function () {
+            a14 = 20;
+            innerFn14 = function () {
+                console.log(a14);
+            };
+            return innerFn14
+        };
+        myFn14()();
+
+
+        console.log("==========scope is lost with new==OK===========");
+        window.a15 = 11;
+        var myFn15 = function () {
+            a15 = 22;
+            innerFn15 = new Function('', 'console.log(a15)')
+            return innerFn15;
+        };
+        myFn15()();
+
+        console.log("==========scope is lost with new==BAD===========");
+        var a16 = 13;
+        function myFn16() {
+            var a16 = 33;
+            var innerFn16 = new Function('', 'console.log(a16)')
+            return innerFn16;
+        }
+        ;
+        myFn16()();
+
+
+        console.log("===========3 function has access to same closure========");
+        /*
+         http://www.javascriptkit.com/javatutors/closures2.shtml
+
+        In JavaScript, whenever you declare a function inside another function,
+         the inside function(s) is/are recreated again each time the outside function is called.)
+         * */
+        var setupSomeGlobals17 = function () {
+            // Local variable that ends up within closure
+            var num = 666;
+            // create local functions. not global/window.
+            this.gAlertNumber = function () {
+                console.log(num);
+            }
+            this.gIncreaseNumber = function () {
+                num++;
+            }
+            this.gSetNumber = function (x) {
+                num = x;
+            }
+        };
+
+        console.log(setupSomeGlobals17);
+        var setup1 = new setupSomeGlobals17();
+        setup1.gAlertNumber();
+
+        setup1.gIncreaseNumber();
+        setup1.gAlertNumber();
+
+        setup1.gSetNumber(50);
+        setup1.gAlertNumber();
+
+        console.log("===========4 function has access to same closure========");
+
+        var setupSomeGlobals18 = function  () {
+            // Local variable that ends up within closure
+            var num = 666;
+            // Store some references to functions as global variables.
+           //But need to create a object with new.
+              gAlertNumber = function () {
+                console.log(num);
+            }
+              gIncreaseNumber = function () {
+                num++;
+            }
+              gSetNumber = function (x) {
+                num = x;
+            }
+        };
+
+        var x= new setupSomeGlobals18();//When we do a 'new' then
+        gAlertNumber();
+        gIncreaseNumber();
+        gAlertNumber();
+
+
+        /*
+         http://www.javascriptkit.com/javatutors/closures3.shtml
+        * Final points:
+
+         Whenever you use function inside another function, a closure is used.
+         Whenever you use eval() inside a function, a closure is used. The text you eval can reference local variables of the function, and within eval you can even create new local variables by using eval('var foo = …
+         When you use Function() inside a function, it does not create a closure. (The new function cannot reference the local variables of the function calling Function()).
+         A closure in JavaScript is like keeping a copy of the all the local variables, just as they were when a function exited.
+         It is probably best to think that a closure is always created just on entry to a function, and the local variables are added to that closure.
+         A new set of local variables is kept every time a function with a closure is called (Given that the function contains a function declaration inside it, and a reference to that inside function is either returned or an external reference is kept for it in some way).
+         Two functions might look like they have the same source text, but have completely different behaviour because of their 'hidden' closure. I don't think JavaScript code can actually find out if a function reference has a closure or not.
+         If you are trying to do any dynamic source code modifications ( for example: myFunction = Function(myFunction.toString().replace(/Hello/,'Hola')); ), it won't work if myFunction is a closure (Of course, you would never even think of doing source code string substitution at runtime, but...).
+         It is possible to get function declarations within function declarations within functions - and you can get closures at more than one level.
+         I think normally a closure is the term for both the function along with the variables that are captured. Note that I do not use that definition in this article!
+         I suspect that closures in JavaScript differ from those normally found in functional languages.
+
+
+         * */
+
+        isLoaded();
+
+    </script>
+
+</head>
+<body>
+<input type="text" value="markup" id="tid1" name="mytext1">
+
+</body>
+</html>

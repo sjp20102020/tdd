@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+
+<html>
+<head>
+    <script>
+
+/*
+method1
+=======
+ Assigning a handler:
+ element.addEventListener( event, handler, phase)
+
+ Removing a handler:
+ element.removeEventListener( event, handler, phase)
+
+
+ method2
+ =======
+ Assigning a handler:(obsolte now)
+ element.attachEvent( "on"+event, handler)
+
+ Removing a handler:
+ element.detachEvent( "on"+event, handler)
+
+ method3
+ =======
+ document.getElementById('button').onclick = function() {
+ alert('Click!')
+ }
+
+
+
+* */
+        var isLoaded = function () {
+            if (document.addEventListener) {
+                document.addEventListener('DOMContentLoaded', ready);
+            }
+        };
+
+
+        var ready = function () {
+            attachEventHandlers();
+            eventHandlers();
+        };
+
+        var attachEventHandlers = function () {
+          /*  document.getElementById('tid1').onclick = function(){
+                console.log("t1 is clicked");
+
+            };*/
+
+            document.getElementById('bid1').onclick = function(){
+                console.log("click the btn...");
+            };
+        }
+
+        var eventHandlers = function(){
+            var bid2Elem = document.getElementById('bid2');
+            bid2Elem.attachEvent("onclick", btn2fn);
+            document.getElementById('bid3').addEventListener('mouseover', btn3fn);
+        }
+
+        var btn2fn = function(){
+            console.log("In btn2fn");
+        }
+        
+        var btn3fn = function(){
+            console.log("in Btn3fn");
+        }
+        
+        isLoaded();
+
+
+    </script>
+
+</head>
+<body>
+<form name="f1">
+    <input type="text" name="t1" value="v1" id="tid1"/>
+    <input type="text" name="t2" value="v2" id="tid2"/>
+    <input type="date"/>
+    <input type="text"/>
+
+    <!--<button id="bid1" >click me</button>-->
+
+    <input type="button" id="bid1" value="click me"/>
+    <input type="button" id="bid2" value="click me2"/>
+    <input type="button" id="bid3" value="click me3"/>
+
+
+</form>
+</body>
+</html>
